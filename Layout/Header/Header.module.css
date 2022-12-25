@@ -1,0 +1,62 @@
+.header {
+	height: auto;
+	width: 100%;
+	background-color: var(--ghost);
+}
+
+.container {
+	display: grid;
+	grid-template:
+		"logo  nav user"
+		/ auto 1fr auto;
+	align-items: center;
+	padding: 0 30px;
+}
+
+.container > svg {
+	grid-area: logo;
+	margin-right: 50px;
+}
+
+.navigation {
+	grid-area: nav;
+}
+
+.logging {
+	grid-area: user;
+	margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+	.container {
+		padding: 0 10px;
+	}
+}
+
+@media (max-width: 576px) {
+	.container > svg {
+		margin: 0;
+	}
+}
+
+@media (max-width: 470px) {
+	.container {
+		grid-template:
+			"logo . user"
+			"logo . nav"
+			/ auto 1fr auto;
+	}
+
+	.container > svg {
+		align-self: center;
+	}
+
+	.navigation {
+		justify-self: center;
+		margin: 0;
+	}
+
+	.logging {
+		justify-self: center;
+	}
+}

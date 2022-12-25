@@ -1,0 +1,26 @@
+.button {
+	display: inline-block;
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 18px;
+	color: var(--light);
+	padding: 9px 15px;
+	border-radius: 3px;
+	border: none;
+}
+
+.red {
+	background-color: var(--red);
+}
+
+.dark {
+	background-color: var(--ghost);
+}
+
+.red:hover {
+	background-color: var(--red-hover);
+}
+
+.dark:hover {
+	background-color: var(--ghost-hover);
+}

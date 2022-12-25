@@ -9,12 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next-auth/mongodb-adapter": "^1.1.1",
+    "classnames": "^2.3.2",
+    "mongodb": "^4.13.0",
+    "mongoose": "^6.8.1",
     "next": "13.0.5",
+    "next-auth": "^4.18.7",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^6.5.1",
+    "@types/node": "^18.11.17",
+    "@types/react": "^18.0.25",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
     "eslint": "8.28.0",
-    "eslint-config-next": "13.0.5"
+    "eslint-config-next": "13.0.5",
+    "eslint-config-prettier": "^8.5.0",
+    "stylelint": "^14.15.0",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-standard": "^29.0.0",
+    "typescript": "^4.9.3"
   }
 }

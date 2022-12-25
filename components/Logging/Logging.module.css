@@ -1,0 +1,42 @@
+.link {
+	color: var(--light);
+	font-weight: 500;
+	cursor: pointer;
+	user-select: none;
+	white-space: nowrap;
+}
+
+.logged {
+	font-size: 25px;
+	line-height: 30px;
+	text-transform: uppercase;
+	width: fit-content;
+}
+
+.unlogged {
+	font-size: 18px;
+	line-height: 24px;
+}
+
+.border {
+	border: 1.5px solid var(--light);
+	border-radius: 20% / 50%;
+	padding: 3px 7px;
+}
+
+@media (max-width: 768px) {
+	.unlogged {
+		font-weight: 300;
+		font-size: 14px;
+	}
+
+	.logged {
+		font-weight: 300;
+		font-size: 14px;
+	}
+
+	.tag {
+		font-weight: 300;
+		font-size: 14px;
+	}
+}

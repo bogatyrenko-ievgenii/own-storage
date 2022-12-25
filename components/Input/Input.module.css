@@ -1,0 +1,19 @@
+.input {
+	padding: 7px 15px;
+	color: var(--black);
+	border: none;
+	outline-color: var(--ghost);
+	background: var(--ground);
+	border-radius: 3px;
+	font-size: 16px;
+	line-height: 22px;
+	font-weight: 500;
+}
+
+.input:focus {
+	box-shadow: 1px 1px 15px var(--ghost);
+}
+
+.border {
+	border: 1px solid var(--ghost);
+}

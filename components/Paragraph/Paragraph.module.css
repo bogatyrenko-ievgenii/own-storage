@@ -1,0 +1,19 @@
+.paragraph {
+	font-weight: 400;
+	color: var(--black);
+}
+
+.small {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.middle {
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.large {
+	font-size: 20px;
+	line-height: 30px;
+}
