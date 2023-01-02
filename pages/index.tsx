@@ -1,4 +1,7 @@
+import { config } from "process";
+import { useEffect } from "react";
 import { Button, Heading, Input, TextArea, Paragraph, Tag } from "../components";
+import { useDBFetch, dbFetchProps } from "../hooks";
 import { withLayout } from "../Layout/Layout";
 
 function Home(): JSX.Element {
@@ -17,6 +20,12 @@ function Home(): JSX.Element {
 				convenient. And every item has a customizable: course of currency, worth of
 				delivery, delivery type, worth of one and all ordered items.
 			</Paragraph>
+			<Button appearance="colorful" color="ghost">
+				ghost
+			</Button>
+			<Button appearance="transparent" color="red">
+				white
+			</Button>
 		</>
 	);
 }

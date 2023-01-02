@@ -1,5 +1,5 @@
-.button {
-	display: inline-block;
+.colorful {
+	/* display: inline-block; */
 	font-weight: 600;
 	font-size: 15px;
 	line-height: 18px;
@@ -9,18 +9,56 @@
 	border: none;
 }
 
+.transparent {
+	font-weight: 500;
+	font-size: 18px;
+	padding: 3px 7px;
+	transition: all 0.3s;
+}
+
 .red {
 	background-color: var(--red);
 }
 
-.dark {
+.transred {
+	border: 1.5px solid var(--red);
+	color: var(--red);
+	border-radius: 20% / 50%;
+	background-color: transparent;
+}
+
+.light {
+	background-color: var(--light);
+}
+
+.translight {
+	border: 1.5px solid var(--light);
+	color: var(--light);
+	border-radius: 20% / 50%;
+	background-color: transparent;
+}
+
+.ghost {
 	background-color: var(--ghost);
+}
+
+.transghost {
+	border: 1.5px solid var(--ghost);
+	color: var(--ghost);
+	border-radius: 20% / 50%;
+	background-color: transparent;
 }
 
 .red:hover {
 	background-color: var(--red-hover);
 }
 
-.dark:hover {
+.ghost:hover {
 	background-color: var(--ghost-hover);
+}
+
+.transred:hover,
+.transghost:hover,
+.translight:hover {
+	transform: scale(1.1);
 }
