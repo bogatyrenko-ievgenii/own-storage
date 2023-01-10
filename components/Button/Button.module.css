@@ -1,12 +1,11 @@
 .colorful {
-	/* display: inline-block; */
 	font-weight: 600;
 	font-size: 15px;
 	line-height: 18px;
-	color: var(--light);
 	padding: 9px 15px;
 	border-radius: 3px;
 	border: none;
+	cursor: pointer;
 }
 
 .transparent {
@@ -14,10 +13,12 @@
 	font-size: 18px;
 	padding: 3px 7px;
 	transition: all 0.3s;
+	cursor: pointer;
 }
 
 .red {
 	background-color: var(--red);
+	color: var(--light);
 }
 
 .transred {
@@ -29,6 +30,7 @@
 
 .light {
 	background-color: var(--light);
+	color: var(--ghost);
 }
 
 .translight {
@@ -40,6 +42,7 @@
 
 .ghost {
 	background-color: var(--ghost);
+	color: var(--light);
 }
 
 .transghost {

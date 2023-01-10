@@ -1,7 +1,4 @@
-import { config } from "process";
-import { useEffect } from "react";
 import { Button, Heading, Input, TextArea, Paragraph, Tag } from "../components";
-import { useDBFetch, dbFetchProps } from "../hooks";
 import { withLayout } from "../Layout/Layout";
 
 function Home(): JSX.Element {
@@ -20,12 +17,55 @@ function Home(): JSX.Element {
 				convenient. And every item has a customizable: course of currency, worth of
 				delivery, delivery type, worth of one and all ordered items.
 			</Paragraph>
-			<Button appearance="colorful" color="ghost">
+			<Paragraph size="large">
+				It can make order in your goods that are still on the way, already in stock or
+				already sold. Each category is in the particular tab, depends on delivery status or
+				if item has already sold. Changing category for particular item is intuitively and
+				convenient. And every item has a customizable: course of currency, worth of
+				delivery, delivery type, worth of one and all ordered items.
+			</Paragraph>
+			<Paragraph size="large">
+				It can make order in your goods that are still on the way, already in stock or
+				already sold. Each category is in the particular tab, depends on delivery status or
+				if item has already sold. Changing category for particular item is intuitively and
+				convenient. And every item has a customizable: course of currency, worth of
+				delivery, delivery type, worth of one and all ordered items.
+			</Paragraph>
+			<Paragraph size="large">
+				It can make order in your goods that are still on the way, already in stock or
+				already sold. Each category is in the particular tab, depends on delivery status or
+				if item has already sold. Changing category for particular item is intuitively and
+				convenient. And every item has a customizable: course of currency, worth of
+				delivery, delivery type, worth of one and all ordered items.
+			</Paragraph>
+			<Paragraph size="large">
+				It can make order in your goods that are still on the way, already in stock or
+				already sold. Each category is in the particular tab, depends on delivery status or
+				if item has already sold. Changing category for particular item is intuitively and
+				convenient. And every item has a customizable: course of currency, worth of
+				delivery, delivery type, worth of one and all ordered items.
+			</Paragraph>
+			<Paragraph size="large">
+				It can make order in your goods that are still on the way, already in stock or
+				already sold. Each category is in the particular tab, depends on delivery status or
+				if item has already sold. Changing category for particular item is intuitively and
+				convenient. And every item has a customizable: course of currency, worth of
+				delivery, delivery type, worth of one and all ordered items.
+			</Paragraph>
+			<Button appearance="colorful" color="light">
 				ghost
 			</Button>
 			<Button appearance="transparent" color="red">
 				white
 			</Button>
+
+			{/* <Backdrop close={() => console.log("closed")}>
+				It can make order in your goods that are still on the way, already in stock or
+				already sold. Each category is in the particular tab, depends on delivery status or
+				if item has already sold. Changing category for particular item is intuitively and
+				convenient. And every item has a customizable: course of currency, worth of
+				delivery, delivery type, worth of one and all ordered items.
+			</Backdrop> */}
 		</>
 	);
 }

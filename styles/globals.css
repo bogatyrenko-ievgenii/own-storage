@@ -17,7 +17,6 @@ a {
 
 :root {
 	--green: #90ffa9;
-	--black: #484848;
 	--red: #c34b4b;
 	--red-hover: #bd2c2c;
 	--light: #f6f6f6;
@@ -25,5 +24,7 @@ a {
 	--ghost-hover: #1d1d20;
 	--ground: #fffff5;
 	--gray-light: #ececec;
-	--gray-dark: #d9d9d9;
+	--gray-middle: #d9d9d9;
+	--gray-dark: #484848;
+	--backdrop: #00000083;
 }

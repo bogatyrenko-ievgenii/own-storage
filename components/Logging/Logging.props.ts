@@ -1,6 +1,4 @@
-import { DetailedHTMLProps, AnchorHTMLAttributes } from "react";
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
 export interface LoggingProps
-	extends DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> {
-	userName?: string;
-}
+	extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}

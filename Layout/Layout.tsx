@@ -6,6 +6,7 @@ import { Sidebar } from "./Sidebar/Sidebar";
 import { Footer } from "./Footer/Footer";
 import { Container } from "./Container/Container";
 import styles from "./Layout.module.css";
+import { ILoggingContext, LoggingContextProvider } from "../context/Logging.context";
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
 	const { asPath } = useRouter();
@@ -25,12 +26,16 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
 	);
 };
 
-export const withLayout = <T extends Record<string, unknown>>(Component: FunctionComponent<T>) => {
+export const withLayout = <T extends Record<string, unknown> & ILoggingContext>(
+	Component: FunctionComponent<T>
+) => {
 	return function withLayoutComponent(props: T): JSX.Element {
 		return (
-			<Layout>
-				<Component {...props} />
-			</Layout>
+			<LoggingContextProvider opened={props.opened}>
+				<Layout>
+					<Component {...props} />
+				</Layout>
+			</LoggingContextProvider>
 		);
 	};
 };

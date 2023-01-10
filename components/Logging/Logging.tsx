@@ -1,36 +1,21 @@
-import { LoggingProps } from "./Logging.props";
-import cn from "classnames";
+import { useContext } from "react";
+import { LoggingContext } from "../../context/Logging.context";
+import { Input } from "../Input/Input";
 import styles from "./Logging.module.css";
-import Link from "next/link";
-import { dbFetchProps, useDBFetch } from "../../hooks";
+import { LoggingProps } from "./Logging.props";
 
-export const Logging = ({ userName, className, ...props }: LoggingProps): JSX.Element => {
-	const dbFetch = useDBFetch();
-	const reqProps: dbFetchProps = {
-		urn: "api/logging/readCustomer",
-		method: "POST",
-		data: { name: "BOSS", email: "BASS@MAIL.COM", password: "LOL123" },
-	};
+export const Logging = ({ className, ...props }: LoggingProps): JSX.Element => {
+	const { opened, setOpened } = useContext(LoggingContext);
 
-	const handleDbFetch = () => {
-		dbFetch(reqProps).then((data) => console.log(data));
-	};
-
-	if (!userName) {
-		return (
-			<div className={cn(className, styles.border)}>
-				<a tabIndex={0} className={cn(className, styles.link, styles.unlogged)} {...props}>
-					Sign In
-				</a>
+	return (
+		<>
+			<div className={styles.bg} onClick={setOpened} {...props}></div>
+			<div className={styles.window}>
+				<Input className={styles.input} border={true} placeholder="name" />
+				<Input className={styles.input} border={true} placeholder="email" />
+				<Input className={styles.input} border={true} placeholder="password" />
 			</div>
-		);
-	} else {
-		return (
-			<Link href={"#"} legacyBehavior>
-				<a tabIndex={0} className={cn(className, styles.link, styles.logged)} {...props}>
-					{userName}
-				</a>
-			</Link>
-		);
-	}
+			<div className={styles.close} onClick={setOpened}></div>
+		</>
+	);
 };
