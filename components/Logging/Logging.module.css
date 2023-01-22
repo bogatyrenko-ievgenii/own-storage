@@ -14,24 +14,39 @@
 	width: 250px;
 	background-color: var(--light);
 	border-radius: 3px;
-	transition: all 1s;
+	transition: all 0.3s;
+	padding: 50px 20px;
 }
 
 .input {
 	display: block;
 	margin: 20px auto;
+	transition: all 0.2s;
+}
+
+.input:hover {
+	transform: scale(1.01);
+}
+
+.input:focus {
+	transform: scale(1.01);
 }
 
 .close {
 	position: absolute;
-	right: 250px;
-	top: 50px;
-	width: 20px;
-	height: 20px;
-	background-color: var(--light);
+	right: 30px;
+	top: 90px;
+	width: 25px;
+	height: 25px;
+	background-color: var(--red);
 	border-radius: 50%;
 	transform: rotate(45deg);
 	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.close:hover {
+	transform: rotate(135deg) scale(1.1);
 }
 
 .close::before {
@@ -41,7 +56,7 @@
 	left: 50%;
 	width: 18px;
 	height: 2px;
-	background-color: var(--ghost);
+	background-color: var(--light);
 	transform: translate(-50%, -50%);
 	border-radius: 50%;
 }
@@ -53,7 +68,19 @@
 	left: 50%;
 	width: 2px;
 	height: 18px;
-	background-color: var(--ghost);
+	background-color: var(--light);
 	transform: translate(-50%, -50%);
 	border-radius: 50%;
+}
+
+@media (max-width: 470px) {
+	.window {
+		right: 12px;
+		top: 50px;
+	}
+
+	.close {
+		right: 22px;
+		top: 60px;
+	}
 }

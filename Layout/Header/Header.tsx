@@ -4,33 +4,22 @@ import { Button, Logging } from "../../components";
 import { Navigation } from "../../components";
 import Logo from "./Logo.svg";
 import cn from "classnames";
-import { useContext, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
+import { useContext, useState } from "react";
 import styles from "./Header.module.css";
 import { LoggingContext } from "../../context/Logging.context";
+import uniqid from "uniqid";
 
 export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
-	const [showForm, setShowForm] = useState<boolean>(false);
 	const [user, setUser] = useState<boolean>(false);
-	const { opened, setOpened } = useContext(LoggingContext);
+	const { opened, setOpened, logTypeSwitcher, onSetHasAccount } = useContext(LoggingContext);
 
-	// const { asPath } = useRouter();
-
-	// const getNavItems = () => {
-	// 	switch (asPath) {
-	// 		case "/":
-	// 			return [
-	// 				{ id: 739, name: "home" },
-	// 				{ id: 732, name: "contacts" },
-	// 			];
-	// 		default:
-	// 			return [
-	// 				{ id: 123, name: "in stock" },
-	// 				{ id: 456, name: "sold" },
-	// 				{ id: 789, name: "on way" },
-	// 			];
-	// 	}
-	// };
+	const onSetOpened = () => {
+		if (opened || !setOpened) {
+			onSetHasAccount && onSetHasAccount();
+			return;
+		}
+		setOpened();
+	};
 
 	return (
 		<header className={cn(className, styles.header)} {...props}>
@@ -38,9 +27,9 @@ export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
 				<Logo />
 				<Navigation
 					items={[
-						{ id: 123, name: "in stock" },
-						{ id: 456, name: "sold" },
-						{ id: 789, name: "on way" },
+						{ id: uniqid(), name: "in stock" },
+						{ id: uniqid(), name: "sold" },
+						{ id: uniqid(), name: "on way" },
 					]}
 					className={styles.navigation}
 				/>
@@ -50,9 +39,9 @@ export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
 							className={styles.logging}
 							appearance="transparent"
 							color="light"
-							onClick={setOpened}
+							onClick={onSetOpened}
 						>
-							Sign in
+							{logTypeSwitcher}
 						</Button>
 						{opened && <Logging />}
 					</>

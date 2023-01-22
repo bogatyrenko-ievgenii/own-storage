@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, AnchorHTMLAttributes } from "react";
 
 interface item {
-	id: number;
+	id: string;
 	name: string;
 }
 
