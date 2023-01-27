@@ -9,13 +9,10 @@ import styles from "./Layout.module.css";
 import { ILoggingContext, LoggingContextProvider } from "../context/Logging.context";
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
-	const { asPath } = useRouter();
-
 	return (
 		<div className={styles.layout}>
 			<Header className={styles.header} />
 			<Container className={styles.body}>
-				{/* {asPath !== "/" && <Sidebar className={styles.sidebar} />} */}
 				{/* <Sidebar className={styles.sidebar} /> */}
 				<main className={styles.main}>{children}</main>
 			</Container>

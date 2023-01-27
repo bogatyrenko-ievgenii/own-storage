@@ -14,11 +14,11 @@ export const Header = ({ className, ...props }: HeaderProps): JSX.Element => {
 	const { opened, setOpened, logTypeSwitcher, onSetHasAccount } = useContext(LoggingContext);
 
 	const onSetOpened = () => {
-		if (opened || !setOpened) {
-			onSetHasAccount && onSetHasAccount();
-			return;
+		if (opened && onSetHasAccount) {
+			onSetHasAccount();
+		} else if (!opened && setOpened) {
+			setOpened();
 		}
-		setOpened();
 	};
 
 	return (

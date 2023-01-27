@@ -19,10 +19,10 @@ export const LoggingContext = createContext<ILoggingContext>({
 });
 
 export const LoggingContextProvider = ({
-	opened,
+	opened = false,
 	logTypeSwitcher,
 	logTypeCurrent,
-	hasAccount,
+	hasAccount = true,
 	children,
 }: ILoggingContext & { children: ReactNode }): JSX.Element => {
 	const [openedState, setOpenedState] = useState<boolean>(opened);
@@ -51,6 +51,9 @@ export const LoggingContextProvider = ({
 	}, [openedState, hasAccountState]);
 
 	const setOpened = () => {
+		if (openedState) {
+			setHasAccountState(true);
+		}
 		setOpenedState((openedState) => !openedState);
 	};
 
