@@ -14,6 +14,18 @@
 	padding: 3px 7px;
 	transition: all 0.3s;
 	cursor: pointer;
+	background-color: transparent;
+	border-radius: 20% / 50%;
+}
+
+.green-dark {
+	background-color: var(--green-dark);
+	color: var(--light);
+}
+
+.trans-green-dark {
+	border: 1.5px solid var(--green-dark);
+	color: var(--green-dark);
 }
 
 .red {
@@ -21,11 +33,9 @@
 	color: var(--light);
 }
 
-.transred {
+.trans-red {
 	border: 1.5px solid var(--red);
 	color: var(--red);
-	border-radius: 20% / 50%;
-	background-color: transparent;
 }
 
 .light {
@@ -33,11 +43,9 @@
 	color: var(--ghost);
 }
 
-.translight {
+.trans-light {
 	border: 1.5px solid var(--light);
 	color: var(--light);
-	border-radius: 20% / 50%;
-	background-color: transparent;
 }
 
 .ghost {
@@ -45,11 +53,9 @@
 	color: var(--light);
 }
 
-.transghost {
+.trans-ghost {
 	border: 1.5px solid var(--ghost);
 	color: var(--ghost);
-	border-radius: 20% / 50%;
-	background-color: transparent;
 }
 
 .red:hover {
@@ -60,8 +66,8 @@
 	background-color: var(--ghost-hover);
 }
 
-.transred:hover,
-.transghost:hover,
-.translight:hover {
+.trans-red:hover,
+.trans-ghost:hover,
+.trans-light:hover {
 	transform: scale(1.1);
 }

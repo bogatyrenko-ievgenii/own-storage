@@ -17,9 +17,12 @@ export const Button = ({
 				[styles.red]: color === "red" && appearance === "colorful",
 				[styles.ghost]: color === "ghost" && appearance === "colorful",
 				[styles.light]: color === "light" && appearance === "colorful",
-				[styles.transred]: color === "red" && appearance === "transparent",
-				[styles.transghost]: color === "ghost" && appearance === "transparent",
-				[styles.translight]: color === "light" && appearance === "transparent",
+				[styles["green-dark"]]: color === "green-dark" && appearance === "colorful",
+				[styles["trans-red"]]: color === "red" && appearance === "transparent",
+				[styles["trans-green-dark"]]:
+					color === "green-dark" && appearance === "transparent",
+				[styles["trans-ghost"]]: color === "ghost" && appearance === "transparent",
+				[styles["trans-light"]]: color === "light" && appearance === "transparent",
 			})}
 			{...props}
 		>
