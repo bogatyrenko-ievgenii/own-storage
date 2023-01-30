@@ -25,18 +25,15 @@ export const Logging = ({ className, ...props }: LoggingProps): JSX.Element => {
 	const fetchUser = useDBFetch();
 
 	useEffect(() => {
-		if (animation === "appearing") {
-			const timerForAppearing = setTimeout(() => {
-				setAnimation("none");
-			}, 500);
-			return () => clearTimeout(timerForAppearing);
-		} else {
+		if (animation !== "appearing") {
 			setAnimation("switching");
-			const timerForSwitching = setTimeout(() => {
-				setAnimation("none");
-			}, 500);
-			return () => clearTimeout(timerForSwitching);
 		}
+
+		const timer = setTimeout(() => {
+			setAnimation("none");
+		}, 500);
+		return () => clearTimeout(timer);
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [logTypeCurrent]);
 
