@@ -6,6 +6,7 @@ import styles from "./Logging.module.css";
 import { LoggingProps } from "./Logging.props";
 import cn from "classnames";
 import { Button } from "../Button/Button";
+import { useDBFetch } from "../../hooks";
 
 interface IInputs {
 	name: string;
@@ -21,6 +22,7 @@ export const Logging = ({ className, ...props }: LoggingProps): JSX.Element => {
 	const { setOpened, logTypeCurrent } = useContext(LoggingContext);
 	const [inputs, setInputs] = useState<IInputs>(defaultInputs);
 	const [animation, setAnimation] = useState<animationType>("appearing");
+	const fetchUser = useDBFetch();
 
 	useEffect(() => {
 		if (animation === "appearing") {
@@ -38,6 +40,21 @@ export const Logging = ({ className, ...props }: LoggingProps): JSX.Element => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [logTypeCurrent]);
 
+	useEffect(() => {
+		const onEscDown = (event: KeyboardEvent) => {
+			if (event.code !== "Escape") {
+				return;
+			}
+
+			if (setOpened && event.code === "Escape") {
+				setOpened();
+			}
+		};
+		document.addEventListener("keydown", onEscDown);
+		return () => document.removeEventListener("keydown", onEscDown);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	const writeToState = (event: ChangeEvent<HTMLInputElement>) => {
 		setInputs((prevState) => {
 			return {
@@ -45,6 +62,10 @@ export const Logging = ({ className, ...props }: LoggingProps): JSX.Element => {
 				[event?.target?.name]: event?.target?.value,
 			};
 		});
+	};
+
+	const clearAllInputs = () => {
+		setInputs(defaultInputs);
 	};
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -70,6 +91,7 @@ export const Logging = ({ className, ...props }: LoggingProps): JSX.Element => {
 							<Input
 								key={inputTitle}
 								name={inputTitle}
+								type={inputTitle === "password" ? "password" : "text"}
 								value={inputs[inputTitle as keyof typeof defaultInputs]}
 								onChange={(event) => writeToState(event)}
 								className={styles.input}
@@ -79,7 +101,7 @@ export const Logging = ({ className, ...props }: LoggingProps): JSX.Element => {
 						);
 					})}
 					<div className={styles["btn-wrapper"]}>
-						<Button appearance="colorful" color="red">
+						<Button appearance="colorful" color="red" onClick={clearAllInputs}>
 							Clear
 						</Button>
 						<Button type="submit" appearance="colorful" color="green-dark">
