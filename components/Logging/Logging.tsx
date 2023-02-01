@@ -1,28 +1,29 @@
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
-import { LoggingContext } from "../../context/Logging.context";
+import { loggedType, LoggingContext, ILogged } from "../../context/Logging.context";
 import { Heading } from "../Heading/Heading";
 import { Input } from "../Input/Input";
 import styles from "./Logging.module.css";
 import { LoggingProps } from "./Logging.props";
 import cn from "classnames";
 import { Button } from "../Button/Button";
-import { useDBFetch } from "../../hooks";
-
-interface IInputs {
-	name: string;
-	email: string;
-	password: string;
-}
+import { dbFetchProps, useDBFetch } from "../../hooks";
 
 type animationType = "appearing" | "switching" | "none";
-
 const defaultInputs = { name: "", email: "", password: "" };
 
 export const Logging = ({ className, ...props }: LoggingProps): JSX.Element => {
-	const { setOpened, logTypeCurrent } = useContext(LoggingContext);
-	const [inputs, setInputs] = useState<IInputs>(defaultInputs);
+	const { setOpened, logTypeCurrent, logged, handleLogged } = useContext(LoggingContext);
+	const [inputs, setInputs] = useState<ILogged>(defaultInputs);
 	const [animation, setAnimation] = useState<animationType>("appearing");
+	const [message, setMessage] = useState<string>("");
 	const fetchUser = useDBFetch();
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setMessage("");
+		}, 3000);
+		return () => clearTimeout(timer);
+	}, [message]);
 
 	useEffect(() => {
 		if (animation !== "appearing") {
@@ -61,12 +62,47 @@ export const Logging = ({ className, ...props }: LoggingProps): JSX.Element => {
 		});
 	};
 
-	const clearAllInputs = () => {
-		setInputs(defaultInputs);
+	const validateInputs = () => {
+		const passwordTemplate = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/gm;
+		const emailTemplate = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/gm;
+
+		let validEmail = inputs.email.match(emailTemplate);
+		let validPassword = inputs.password.match(passwordTemplate);
+
+		return !!validEmail && !!validPassword;
 	};
 
-	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+	const createSettingObj = (type: "read" | "create"): dbFetchProps => {
+		return {
+			urn: `/api/logging/${type}Customer`,
+			method: "POST",
+			data: inputs,
+		};
+	};
+
+	const handleNewUser = (data: loggedType | "string") => {
+		if (typeof data === "object" && handleLogged) {
+			handleLogged(data);
+		} else if (typeof data === "string") {
+			setMessage(data);
+		} else {
+			console.log(data);
+		}
+	};
+
+	const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+		let validated = validateInputs();
+		if (!validated) {
+			console.log("wrong");
+		}
+		if (validated) {
+			if (logTypeCurrent === "Sign in") {
+				await fetchUser(createSettingObj("read")).then((data) => console.log(data));
+			} else if (logTypeCurrent === "Sign up") {
+				await fetchUser(createSettingObj("create")).then((data) => handleNewUser(data));
+			}
+		}
 	};
 
 	return (
@@ -80,6 +116,7 @@ export const Logging = ({ className, ...props }: LoggingProps): JSX.Element => {
 			>
 				<Heading className={styles.title} tag="h3">
 					Please, type your personal data to {logTypeCurrent.toLocaleLowerCase()}.
+					{message && message}
 				</Heading>
 
 				<form onSubmit={handleSubmit}>
@@ -98,7 +135,11 @@ export const Logging = ({ className, ...props }: LoggingProps): JSX.Element => {
 						);
 					})}
 					<div className={styles["btn-wrapper"]}>
-						<Button appearance="colorful" color="red" onClick={clearAllInputs}>
+						<Button
+							appearance="colorful"
+							color="red"
+							onClick={() => setInputs(defaultInputs)}
+						>
 							Clear
 						</Button>
 						<Button type="submit" appearance="colorful" color="green-dark">
